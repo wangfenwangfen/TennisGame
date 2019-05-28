@@ -62,7 +62,11 @@ class Player {
         return listScore;
     }
 
-    public String getName() {
+    void initLastPlayerScore() {
+        playerScores.set(getPlayerScores().size()-1, new PlayerScore(0,0));
+    }
+
+    String getName() {
         return name;
     }
 
@@ -77,4 +81,6 @@ class Player {
     void setPlayerScores(List<PlayerScore> playerScores) {
         this.playerScores = playerScores;
     }
+
+
 }

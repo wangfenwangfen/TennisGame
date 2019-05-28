@@ -33,6 +33,10 @@ public class PlayerScore {
         return point;
     }
 
+    void setPoint(int point) {
+        this.point = point;
+    }
+
     int getScore() {
         return Score;
     }

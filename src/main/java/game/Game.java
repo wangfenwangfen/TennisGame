@@ -12,17 +12,34 @@ public class Game {
 
     List<Player> addPlayer(Player player) {
        players.add(player);
+       initPlayerScoreForPlayers();
        return players;
     }
 
-     Player getTheWinner() {
-        Player winner = new Player(null);
+     Player winner() {
+        Player winner = null;
        for(Player player : players){
            if(player.isWinner()){
                winner = player;
            }
        }
         return winner;
+    }
+
+    private void initPlayerScoreForPlayers(){
+        if(isGameOver()){
+            for(Player player : players){
+                player.initLastPlayerScore();
+            }
+            }
+        }
+
+    private boolean isGameOver() {
+        return winner()!=null;
+    }
+
+    List<Player> getPlayers() {
+        return players;
     }
 
     @Override

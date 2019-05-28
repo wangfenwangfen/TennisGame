@@ -25,7 +25,7 @@ public class GameWinnerTest {
         game.addPlayer(player1);
         game.addPlayer(player2);
 
-        Player winner = game.getTheWinner();
+        Player winner = game.winner();
 
         assertThat(winner).isEqualTo(player2);
     }
