@@ -9,7 +9,8 @@ class Player {
     private boolean isWinner;
 
     Player() {
-        playerScores = new ArrayList<PlayerScore>();
+        isWinner = false;
+        this.playerScores = new ArrayList<PlayerScore>();
     }
 
     void addPlayerScore(PlayerScore playerScore){
@@ -19,7 +20,7 @@ class Player {
     int calculatePointsTotal(){
         int pointsTotal = 0;
         for(PlayerScore playerScore : playerScores){
-            playerScore.addPoint(pointsTotal);
+           pointsTotal = playerScore.addPoint(pointsTotal);
         }
         return pointsTotal;
     }

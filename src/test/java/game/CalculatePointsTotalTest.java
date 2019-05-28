@@ -17,4 +17,18 @@ public class CalculatePointsTotalTest {
 
         Assertions.assertThat(result).isEqualTo(0);
     }
+
+    @Test
+    public void should_return_3_if_have_3_point() {
+        Player player = new Player();
+        player.addPlayerScore(new PlayerScore(0));
+        player.addPlayerScore(new PlayerScore(1));
+        player.addPlayerScore(new PlayerScore(1));
+        player.addPlayerScore(new PlayerScore(0));
+        player.addPlayerScore(new PlayerScore(1));
+
+        int result = player.calculatePointsTotal();
+
+        Assertions.assertThat(result).isEqualTo(3);
+    }
 }
