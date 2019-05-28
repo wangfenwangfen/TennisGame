@@ -52,11 +52,11 @@ class Player {
         return pointsTotal;
     }
 
-    List<PlayerScore> scoresOppenent() {
+    List<PlayerScore> pointsOfOppenent() {
         List<PlayerScore> listScore = new ArrayList<PlayerScore>();
         listScore.add(playerScores.get(0));
         for (int i = 1; i < playerScores.size(); i++) {
-            listScore.add(playerScores.get(i).playerOpponent());
+            listScore.add(playerScores.get(i).pointOfOpponent());
         }
         return listScore;
     }

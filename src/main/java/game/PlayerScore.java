@@ -5,11 +5,6 @@ public class PlayerScore {
     private int point;
     private int Score;
 
-    PlayerScore() {
-        this.point = 0;
-        this.Score = 0;
-    }
-
     PlayerScore(int point) {
         this.point = point;
     }
@@ -19,8 +14,8 @@ public class PlayerScore {
         Score = score;
     }
 
-    PlayerScore playerOpponent() {
-        PlayerScore playerScoreOpponent = new PlayerScore();
+    PlayerScore pointOfOpponent() {
+        PlayerScore playerScoreOpponent = new PlayerScore(0,0);
         if (this.point == 0) {
             playerScoreOpponent.point = 1;
         } else {

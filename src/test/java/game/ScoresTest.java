@@ -19,6 +19,7 @@ public class ScoresTest {
         player1.addPlayerScore(new PlayerScore(1));
         player1.addPlayerScore(new PlayerScore(0));
         player1.addPlayerScore(new PlayerScore(0));
+        player1.addPlayerScore(new PlayerScore(1));
 
        List<PlayerScore> scoresResult = player1.getPlayerScores();
 
@@ -30,6 +31,7 @@ public class ScoresTest {
        scoresExpected.add(new PlayerScore(1, 40));
        scoresExpected.add(new PlayerScore(0, 40));
        scoresExpected.add(new PlayerScore(0, 40));
+       scoresExpected.add(new PlayerScore(1, 0));
 
         assertThat(scoresResult).isEqualTo(scoresExpected);
     }

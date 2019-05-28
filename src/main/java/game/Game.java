@@ -9,12 +9,13 @@ public class Game {
     Game() {
         players = new ArrayList<Player>();
     }
+
     List<Player> addPlayer(Player player) {
        players.add(player);
        return players;
     }
 
-    private Player getTheWinner() {
+     Player getTheWinner() {
         Player winner = new Player(null);
        for(Player player : players){
            if(player.isWinner()){
