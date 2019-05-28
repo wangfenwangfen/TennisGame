@@ -27,6 +27,7 @@ public class Print {
         StringBuilder stringBuilder1 = new StringBuilder("Games Scores for player 1 : ");
         StringBuilder stringBuilder2 = new StringBuilder("Games Scores for player 2 : ");
         List<Round> rounds = game.getRounds();
+
         for (Round theRound : rounds) {
             stringBuilder1.append("Point : ").append(theRound.getPlayerScore1().getPoint()).append(" , Score: ").append(theRound.getPlayerScore1().getScore()).append(" , ");
             stringBuilder2.append("Point : ").append(theRound.getPlayerScore2().getPoint()).append(" , Score: ").append(theRound.getPlayerScore2().getScore()).append(" , ");
