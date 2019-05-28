@@ -19,7 +19,7 @@ public class GameWinnerTest {
 
         Player player2 = new Player("Player2");
         player2.setPlayerScores(player1.pointsOfOppenent());
-        player2.calculateAllScores();
+        player2.calculateAllScores(player2.getPlayerScores());
 
         Game game = new Game();
         game.addPlayer(player1);

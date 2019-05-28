@@ -21,7 +21,7 @@ public class ScoresOfOpponentTest {
 
         Player player2 = new Player("Player2");
         player2.setPlayerScores(player1.pointsOfOppenent());
-        player2.calculateAllScores();
+        player2.calculateAllScores(player2.getPlayerScores());
 
         List<PlayerScore> listExpected = new ArrayList<PlayerScore>();
         listExpected.add(new PlayerScore(0, 0));

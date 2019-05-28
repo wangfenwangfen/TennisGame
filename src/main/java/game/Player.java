@@ -17,16 +17,17 @@ class Player {
 
     List<PlayerScore> addPlayerScore(PlayerScore playerScore) {
         playerScores.add(playerScore);
-        calculateAllScores();
+       playerScores = calculateAllScores(playerScores);
         return playerScores;
     }
 
-    void calculateAllScores() {
+    List<PlayerScore> calculateAllScores(List<PlayerScore> playerScoresParam) {
         int pointTotal = 0;
-        for (PlayerScore playerScore : playerScores) {
+        for (PlayerScore playerScore : playerScoresParam) {
             pointTotal = playerScore.addPoint(pointTotal);
             playerScore.setScore(calculateScore(pointTotal));
         }
+        return playerScoresParam;
     }
 
     int calculateScore(int pointTotal) {
