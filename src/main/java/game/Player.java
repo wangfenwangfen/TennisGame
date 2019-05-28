@@ -12,16 +12,16 @@ class Player {
         this.name = name;
         isWinner = false;
         this.playerScores = new ArrayList<PlayerScore>();
-        playerScores.add(new PlayerScore(0,0));
+        playerScores.add(new PlayerScore(0, 0));
     }
 
-    List<PlayerScore> addPlayerScore(PlayerScore playerScore){
+    List<PlayerScore> addPlayerScore(PlayerScore playerScore) {
         playerScores.add(playerScore);
         calculateAllScores();
         return playerScores;
     }
 
-    private void calculateAllScores() {
+    void calculateAllScores() {
         int pointTotal = 0;
         for (PlayerScore playerScore : playerScores) {
             pointTotal = playerScore.addPoint(pointTotal);
@@ -44,12 +44,21 @@ class Player {
         return 0;
     }
 
-    int calculatePointsTotal(){
+    int calculatePointsTotal() {
         int pointsTotal = 0;
-        for(PlayerScore playerScore : playerScores){
-           pointsTotal = playerScore.addPoint(pointsTotal);
+        for (PlayerScore playerScore : playerScores) {
+            pointsTotal = playerScore.addPoint(pointsTotal);
         }
         return pointsTotal;
+    }
+
+    List<PlayerScore> scoresOppenent() {
+        List<PlayerScore> listScore = new ArrayList<PlayerScore>();
+        listScore.add(playerScores.get(0));
+        for (int i = 1; i < playerScores.size(); i++) {
+            listScore.add(playerScores.get(i).playerOpponent());
+        }
+        return listScore;
     }
 
     public String getName() {
@@ -62,5 +71,9 @@ class Player {
 
     List<PlayerScore> getPlayerScores() {
         return playerScores;
+    }
+
+    void setPlayerScores(List<PlayerScore> playerScores) {
+        this.playerScores = playerScores;
     }
 }
