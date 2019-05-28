@@ -8,13 +8,24 @@ class Player {
     private List<PlayerScore> playerScores;
     private boolean isWinner;
 
-    Player() {
+    Player(String name) {
         isWinner = false;
         this.playerScores = new ArrayList<PlayerScore>();
+        playerScores.add(new PlayerScore(0,0));
     }
 
-    void addPlayerScore(PlayerScore playerScore){
+    List<PlayerScore> addPlayerScore(PlayerScore playerScore){
         playerScores.add(playerScore);
+        calculateAllScores();
+        return playerScores;
+    }
+
+    private void calculateAllScores() {
+        int pointTotal = 0;
+        for (PlayerScore playerScore : playerScores) {
+            pointTotal = playerScore.addPoint(pointTotal);
+            playerScore.setScore(calculateScore(pointTotal));
+        }
     }
 
     int calculateScore(int pointTotal) {
@@ -40,5 +51,15 @@ class Player {
         return pointsTotal;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    boolean isWinner() {
+        return isWinner;
+    }
+
+    List<PlayerScore> getPlayerScores() {
+        return playerScores;
+    }
 }

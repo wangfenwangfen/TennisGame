@@ -2,80 +2,35 @@ package game;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ScoresTest {
 
     @Test
-    public void should_return_the_right_score_for_all_rounds() {
+    public void should_return_the_right_score_for_the_player() {
 
-        Round round1 = new Round(new PlayerScore(1));
-        Round round2 = new Round(new PlayerScore(1));
-        Round round3 = new Round(new PlayerScore(0));
-        Round round4 = new Round(new PlayerScore(1));
-        Round round5 = new Round(new PlayerScore(0));
-        Round round6 = new Round(new PlayerScore(0));
-        Round round7 = new Round(new PlayerScore(0));
+        Player player1 = new Player("Player1");
+        player1.addPlayerScore(new PlayerScore(1));
+        player1.addPlayerScore(new PlayerScore(1));
+        player1.addPlayerScore(new PlayerScore(0));
+        player1.addPlayerScore(new PlayerScore(1));
+        player1.addPlayerScore(new PlayerScore(0));
+        player1.addPlayerScore(new PlayerScore(0));
 
-        Game game = new Game();
+       List<PlayerScore> scoresResult = player1.getPlayerScores();
 
-        game.add(round1);
-        game.add(round2);
-        game.add(round3);
-        game.add(round4);
-        game.add(round5);
-        game.add(round6);
-        game.add(round7);
+       List<PlayerScore> scoresExpected = new ArrayList<PlayerScore>();
+       scoresExpected.add(new PlayerScore(0,0));
+       scoresExpected.add(new PlayerScore(1, 15));
+       scoresExpected.add(new PlayerScore(1, 30));
+       scoresExpected.add(new PlayerScore(0, 30));
+       scoresExpected.add(new PlayerScore(1, 40));
+       scoresExpected.add(new PlayerScore(0, 40));
+       scoresExpected.add(new PlayerScore(0, 40));
 
-        game.calculateAllScores();
-
-        Round round_1 = new Round(new PlayerScore(1, 15), new PlayerScore(0, 0));
-        Round round_2 = new Round(new PlayerScore(1, 30), new PlayerScore(0, 0));
-        Round round_3 = new Round(new PlayerScore(0, 30), new PlayerScore(1, 15));
-        Round round_4 = new Round(new PlayerScore(1, 40), new PlayerScore(0, 15));
-        Round round_5 = new Round(new PlayerScore(0, 40), new PlayerScore(1, 30));
-        Round round_6 = new Round(new PlayerScore(0, 40), new PlayerScore(1, 40));
-        Round round_7 = new Round(new PlayerScore(0, 0), new PlayerScore(1, 0));
-
-        Game gameExpected = new Game();
-        gameExpected.add(round_1);
-        gameExpected.add(round_2);
-        gameExpected.add(round_3);
-        gameExpected.add(round_4);
-        gameExpected.add(round_5);
-        gameExpected.add(round_6);
-        gameExpected.add(round_7);
-        assertThat(game).isEqualTo(gameExpected);
+        assertThat(scoresResult).isEqualTo(scoresExpected);
     }
-
-    @Test
-    public void should_return_the_winner_player() {
-
-        Round round1 = new Round(new PlayerScore(1));
-        Round round2 = new Round(new PlayerScore(1));
-        Round round3 = new Round(new PlayerScore(0));
-        Round round4 = new Round(new PlayerScore(1));
-        Round round5 = new Round(new PlayerScore(0));
-        Round round6 = new Round(new PlayerScore(0));
-        Round round7 = new Round(new PlayerScore(0));
-
-        Game game = new Game();
-
-        game.add(round1);
-        game.add(round2);
-        game.add(round3);
-        game.add(round4);
-        game.add(round5);
-        game.add(round6);
-        game.add(round7);
-
-        game.calculateAllScores();
-
-        PlayerScore winner = game.getWinner();
-        Game gameExpected = new Game();
-        gameExpected.setWinner(round7.getPlayerScore2());
-
-        assertThat(winner).isEqualTo(gameExpected.getWinner());
-    }
-
 }

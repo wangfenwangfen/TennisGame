@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Print {
     public static void main(String[] args) {
+        /*
         Round round1 = new Round(new PlayerScore(1));
         Round round2 = new Round(new PlayerScore(0));
         Round round3 = new Round(new PlayerScore(1));
@@ -31,5 +32,6 @@ public class Print {
 
         System.out.println(stringBuilder1);
         System.out.println(stringBuilder2);
+        */
     }
 }

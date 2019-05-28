@@ -7,7 +7,7 @@ public class CalculatePointsTotalTest {
 
     @Test
     public void should_return_0_if_point_is_0() {
-        Player player = new Player();
+        Player player = new Player("Player1");
         player.addPlayerScore(new PlayerScore(0));
         player.addPlayerScore(new PlayerScore(0));
         player.addPlayerScore(new PlayerScore(0));
@@ -20,7 +20,7 @@ public class CalculatePointsTotalTest {
 
     @Test
     public void should_return_3_if_have_3_point() {
-        Player player = new Player();
+        Player player = new Player("Player1");
         player.addPlayerScore(new PlayerScore(0));
         player.addPlayerScore(new PlayerScore(1));
         player.addPlayerScore(new PlayerScore(1));
