@@ -71,11 +71,10 @@ public class ScoresTest {
 
         game.calculateAllScores();
 
-        PlayerScore winner = game.getWinner();
-        Game gameExpected = new Game();
-        gameExpected.setWinner(round7.getPlayerScore2());
+        String winner = game.getWinner();
+        String winnerExpected = "Player2";
 
-        assertThat(winner).isEqualTo(gameExpected.getWinner());
+        assertThat(winner).isEqualTo(winnerExpected);
     }
 
 }
