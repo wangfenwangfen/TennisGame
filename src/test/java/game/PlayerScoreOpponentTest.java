@@ -9,7 +9,17 @@ public class PlayerScoreOpponentTest {
         PlayerScore playerScore = new PlayerScore(1);
         PlayerScore playerScoreOpponent = playerScore.playerOpponent();
 
-        PlayerScore playerScoreExpected = new PlayerScore(0,0);
+        PlayerScore playerScoreExpected = new PlayerScore(0);
+
+        Assertions.assertThat(playerScoreOpponent).isEqualTo(playerScoreExpected);
+    }
+
+    @Test
+    public void point_of_opponent_should_be_1_if_player_point_is_0() {
+        PlayerScore playerScore = new PlayerScore(0);
+        PlayerScore playerScoreOpponent = playerScore.playerOpponent();
+
+        PlayerScore playerScoreExpected = new PlayerScore(1);
 
         Assertions.assertThat(playerScoreOpponent).isEqualTo(playerScoreExpected);
     }
