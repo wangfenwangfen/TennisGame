@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Game {
     private List<Round> rounds;
-    private PlayerScore winner;
+    private String winner;
 
     Game() {
         Round p = new Round();
@@ -31,11 +31,11 @@ public class Game {
 
     private void chooseWinner(int pointTotal1, int pointTotal2, Round round) {
         if (pointTotal1 == 4) {
-            winner = round.getPlayerScore1();
+            winner = "Player1";
             round.getPlayerScore2().setScore(0);
         }
         if (pointTotal2 == 4) {
-            winner = round.getPlayerScore2();
+            winner = "Player2";
             round.getPlayerScore1().setScore(0);
         }
     }
@@ -79,7 +79,7 @@ public class Game {
         return rounds;
     }
 
-    PlayerScore getWinner() {
+    String getWinner() {
         return winner;
     }
 
@@ -88,9 +88,5 @@ public class Game {
         return "Game{" +
                 "rounds=" + rounds +
                 '}';
-    }
-
-    void setWinner(PlayerScore winner) {
-        this.winner = winner;
     }
 }

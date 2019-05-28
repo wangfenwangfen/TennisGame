@@ -5,11 +5,12 @@ import java.util.List;
 public class Print {
     public static void main(String[] args) {
         Round round1 = new Round(new PlayerScore(1));
-        Round round2 = new Round(new PlayerScore(0));
-        Round round3 = new Round(new PlayerScore(1));
-        Round round4 = new Round(new PlayerScore(0));
+        Round round2 = new Round(new PlayerScore(1));
+        Round round3 = new Round(new PlayerScore(0));
+        Round round4 = new Round(new PlayerScore(1));
         Round round5 = new Round(new PlayerScore(0));
-        Round round6 = new Round(new PlayerScore(1));
+        Round round6 = new Round(new PlayerScore(0));
+        Round round7 = new Round(new PlayerScore(0));
 
         Game game = new Game();
 
@@ -19,8 +20,10 @@ public class Print {
         game.add(round4);
         game.add(round5);
         game.add(round6);
+        game.add(round7);
 
         game.calculateAllScores();
+
         StringBuilder stringBuilder1 = new StringBuilder("Games Scores for player 1 : ");
         StringBuilder stringBuilder2 = new StringBuilder("Games Scores for player 2 : ");
         List<Round> rounds = game.getRounds();
@@ -31,5 +34,6 @@ public class Print {
 
         System.out.println(stringBuilder1);
         System.out.println(stringBuilder2);
+        System.out.println("The winner is : " + game.getWinner());
     }
 }
