@@ -9,6 +9,7 @@ class Player {
     private boolean isWinner;
 
     Player(String name) {
+        this.name = name;
         isWinner = false;
         this.playerScores = new ArrayList<PlayerScore>();
         playerScores.add(new PlayerScore(0,0));
