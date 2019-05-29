@@ -3,7 +3,7 @@ package game;
 public class PlayerScore {
 
     private int point;
-    private int Score;
+    private int score;
 
     PlayerScore(int point) {
         this.point = point;
@@ -11,7 +11,7 @@ public class PlayerScore {
 
     PlayerScore(int point, int score) {
         this.point = point;
-        Score = score;
+        this.score = score;
     }
 
     PlayerScore pointOfOpponent() {
@@ -33,16 +33,12 @@ public class PlayerScore {
         return point;
     }
 
-    void setPoint(int point) {
-        this.point = point;
-    }
-
     int getScore() {
-        return Score;
+        return score;
     }
 
     void setScore(int score) {
-        Score = score;
+        this.score = score;
     }
 
     @Override
@@ -53,13 +49,13 @@ public class PlayerScore {
         PlayerScore playerScore = (PlayerScore) o;
 
         if (point != playerScore.point) return false;
-        return Score == playerScore.Score;
+        return score == playerScore.score;
     }
 
     @Override
     public int hashCode() {
         int result = point;
-        result = 31 * result + Score;
+        result = 31 * result + score;
         return result;
     }
 
@@ -67,7 +63,7 @@ public class PlayerScore {
     public String toString() {
         return "PlayerScore{" +
                 "point=" + point +
-                ", Score=" + Score +
+                ", score=" + score +
                 '}';
     }
 }

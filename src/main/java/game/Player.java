@@ -82,5 +82,4 @@ class Player {
         this.playerScores = playerScores;
     }
 
-
 }
