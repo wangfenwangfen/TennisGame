@@ -4,37 +4,40 @@ import java.util.List;
 
 public class Print {
     public static void main(String[] args) {
-        Round round1 = new Round(new PlayerScore(1));
-        Round round2 = new Round(new PlayerScore(1));
-        Round round3 = new Round(new PlayerScore(0));
-        Round round4 = new Round(new PlayerScore(1));
-        Round round5 = new Round(new PlayerScore(0));
-        Round round6 = new Round(new PlayerScore(0));
-        Round round7 = new Round(new PlayerScore(0));
+        Player player1 = new Player("Player1");
+        Player player2 = new Player("player2");
 
-        Game game = new Game();
+        Game game = new Game(player1, player2);
 
-        game.add(round1);
-        game.add(round2);
-        game.add(round3);
-        game.add(round4);
-        game.add(round5);
-        game.add(round6);
-        game.add(round7);
+        game.addRound(player1);
+        game.addRound(player1);
+        game.addRound(player2);
+        game.addRound(player1);
+        game.addRound(player2);
+        game.addRound(player2);
+        game.addRound(player2);
 
-        game.calculateAllScores();
+        List<Score> scores1 = game.getScoresForPlayer(player1);
+        List<Score> scores2 = game.getScoresForPlayer(player2);
 
-        StringBuilder stringBuilder1 = new StringBuilder("Games Scores for player 1 : ");
-        StringBuilder stringBuilder2 = new StringBuilder("Games Scores for player 2 : ");
-        List<Round> rounds = game.getRounds();
-
-        for (Round theRound : rounds) {
-            stringBuilder1.append("Point : ").append(theRound.getPlayerScore1().getPoint()).append(" , Score: ").append(theRound.getPlayerScore1().getScore()).append(" , ");
-            stringBuilder2.append("Point : ").append(theRound.getPlayerScore2().getPoint()).append(" , Score: ").append(theRound.getPlayerScore2().getScore()).append(" , ");
+        StringBuilder stringBuilder1;
+        stringBuilder1 = new StringBuilder("Games Scores for ");
+        stringBuilder1.append(player1.getName());
+        for (Score score : scores1) {
+            stringBuilder1.append(" Point : ").append(score.getPoint()).append(" , Score: ").append(score.getScore()).append(" , ");
         }
-
         System.out.println(stringBuilder1);
+
+        StringBuilder stringBuilder2;
+        stringBuilder2 = new StringBuilder("Games Scores for ");
+        stringBuilder2.append(player2.getName());
+
+        for (Score score : scores2) {
+            stringBuilder2.append(" Point : ").append(score.getPoint()).append(" , Score: ").append(score.getScore()).append(" , ");
+        }
         System.out.println(stringBuilder2);
-        System.out.println("The winner is : " + game.getWinner());
+
+        System.out.println("The winner is " + game.winner().getName());
     }
+
 }

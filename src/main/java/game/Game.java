@@ -3,90 +3,70 @@ package game;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game {
+class Game {
+    private static final int POINT = 1;
+    private static final int POINT_ZERO = 0;
     private List<Round> rounds;
-    private String winner;
+    private Player player1;
+    private Player player2;
 
-    Game() {
-        Round p = new Round();
-        rounds = new ArrayList<Round>();
-        rounds.add(p);
+    List<Score> getScoresForPlayer(Player player) {
+        List<Score> scoresList;
+
+        if (player.equals(player1)) {
+            scoresList = player1.getScores();
+        } else {
+            scoresList = player2.getScores();
+        }
+        return scoresList;
     }
 
-    void add(Round p) {
-        rounds.add(p);
-    }
-
-    void calculateAllScores() {
-        int pointTotal1 = 0;
-        int pointTotal2 = 0;
-        for (Round round : rounds) {
-            pointTotal1 = calculatPointTotal(pointTotal1, round.getPlayerScore1());
-            pointTotal2 = calculatPointTotal(pointTotal2, round.getPlayerScore2());
-            round.getPlayerScore1().setScore(calculateScore(pointTotal1));
-            round.getPlayerScore2().setScore(calculateScore(pointTotal2));
-            chooseWinner(pointTotal1, pointTotal2, round);
+    void addRound(Player winner) {
+        if (!isGameOver()) {
+            rounds.add(new Round(winner));
+            generateScores(winner);
+            initPlayerScoreForPlayers();
+        } else {
+            throw new IllegalArgumentException("Can not add Round, because Game is Over ! ");
         }
     }
 
-    private void chooseWinner(int pointTotal1, int pointTotal2, Round round) {
-        if (pointTotal1 == 4) {
-            winner = "Player1";
-            round.getPlayerScore2().setScore(0);
+    private void generateScores(Player winner) {
+        if (winner.equals(player1)) {
+            player1.winPoint(POINT);
+            player1.addScores(new Score(POINT, player1.calculateScore()));
+            player2.addScores(new Score(POINT_ZERO, player2.calculateScore()));
+        } else {
+            player2.winPoint(POINT);
+            player2.addScores(new Score(POINT, player2.calculateScore()));
+            player1.addScores(new Score(POINT_ZERO, player1.calculateScore()));
         }
-        if (pointTotal2 == 4) {
-            winner = "Player2";
-            round.getPlayerScore1().setScore(0);
+    }
+
+    private void initPlayerScoreForPlayers() {
+        if (isGameOver()) {
+            player1.initLastScore();
+            player2.initLastScore();
         }
     }
 
-    private int calculatPointTotal(int pointTotal1, PlayerScore playerScore1) {
-        pointTotal1 = playerScore1.addPoint(pointTotal1);
-        return pointTotal1;
+    private boolean isGameOver() {
+        return winner() != null;
     }
 
-    int calculateScore(int pointTotal) {
-        if (pointTotal == 1) {
-            return 15;
-        }
-        if (pointTotal == 2) {
-            return 30;
-        }
-        if (pointTotal == 3) {
-            return 40;
-        }
-        if (pointTotal == 4)
-            return 0;
-        return 0;
+    Player winner() {
+        if (player1.isWinner())
+            return player1;
+        if (player2.isWinner())
+            return player2;
+        return null;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Game game = (Game) o;
-
-        return rounds != null ? rounds.equals(game.rounds) : game.rounds == null;
+    Game(Player player1, Player player2) {
+        this.rounds = new ArrayList<Round>();
+        this.player1 = player1;
+        this.player2 = player2;
     }
 
-    @Override
-    public int hashCode() {
-        return rounds != null ? rounds.hashCode() : 0;
-    }
 
-    List<Round> getRounds() {
-        return rounds;
-    }
-
-    String getWinner() {
-        return winner;
-    }
-
-    @Override
-    public String toString() {
-        return "Game{" +
-                "rounds=" + rounds +
-                '}';
-    }
 }
